@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Herramientas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-tools"></i> ToolBox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/catalog">Herramientas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="##">Cómo Funciona</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+                    <li class="nav-item"><button class="nav-link btn" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar Sesión</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <section class="hero-section text-center">
+    <div class="container">
+      <h1>Catálogo de Herramientas</h1>
+      <p class="lead">Encuentra la herramienta perfecta para tu proyecto</p>
+    </div>
+  </section>
+
+  <!-- Parte donde se generan dinamicamente cada herramienta para el catalogo -->
+  <div class="container">
+    <div class="row">
+      <% if (tools.length === 0) { %>
+        <p class="text-center">No hay herramientas disponibles por el momento.</p>
+      <% } else { %>
+        <% tools.forEach(tool => { %>
+          <div class="col-md-4 mb-4">
+            <div class="card tool-card">
+              <img src="images/<%= tool.nameTool %>.jpg" class="card-img-top" alt="<%= tool.nameTool %>">
+              <div class="card-body">
+                <h5 class="card-title"><%= tool.nameTool %></h5>
+                <p class="card-text">
+                  <strong>Categoría:</strong> <%= tool.nameCategory %><br>
+                  <strong>Publicado por:</strong> <%= tool.nameUser %><br>
+                  <strong>Precio por día:</strong> €<%= tool.pricePerDay %><br>
+                  <strong>Stock disponible:</strong> <%= tool.stock %>
+                </p>
+                <a href="/tool/<%= tool.idTool %>" class="btn btn-primary">Ver más</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } %>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>ToolShare</h5>
+                    <p>La mejor plataforma para compartir herramientas en tu comunidad</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Términos y Condiciones</a></li>
+                        <li><a href="#" class="text-white">Política de Privacidad</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> info@toolshare.com</li>
+                        <li><i class="fas fa-phone"></i> +34 900 123 456</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
